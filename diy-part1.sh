@@ -24,11 +24,11 @@ mkdir -p "$PKG_DIR"
 ADD_AIROHA_NPU=true    # luci-app-airoha-npu：Airoha SoC 状态页（NPU/CPU/Frame Engine/PPE）
 
 ADD_PASSWALL=false     # luci-app-passwall（含依赖源）
-ADD_OPENCLASH=true    # luci-app-openclash ⚠ 依赖 Ruby/Rust，编译极慢
-ADD_MOSDNS=true       # luci-app-mosdns + v2ray-geodata
-ADD_LUCKY=true        # luci-app-lucky（DDNS + socat）
-ADD_TAILSCALE=true    # luci-app-tailscale
-ADD_OPENLIST=true     # luci-app-openlist2（alist/openlist 挂载）
+ADD_OPENCLASH=false    # luci-app-openclash ⚠ 依赖 Ruby/Rust，编译极慢
+ADD_MOSDNS=false       # luci-app-mosdns + v2ray-geodata
+ADD_LUCKY=false        # luci-app-lucky（DDNS + socat）
+ADD_TAILSCALE=false    # luci-app-tailscale
+ADD_OPENLIST=false     # luci-app-openlist2（alist/openlist 挂载）
 ADD_SMARTDNS=false     # luci-app-smartdns
 
 ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
@@ -37,8 +37,8 @@ ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
 
 #-----新加部分-------
 ADD_KMODHELPER=true
-ADD_ADGUARDHOME=true
-ADD_EASYIER=true
+ADD_ADGUARDHOME=false
+ADD_EASYIER=false
 
 clone() {  # clone <url> <dir> [branch]
   local url="$1" dir="$2" br="$3"
