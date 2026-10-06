@@ -29,7 +29,7 @@ ADD_MOSDNS=true       # luci-app-mosdns + v2ray-geodata
 ADD_LUCKY=true        # luci-app-lucky（DDNS + socat）
 ADD_TAILSCALE=true    # luci-app-tailscale
 ADD_OPENLIST=true     # luci-app-openlist2（alist/openlist 挂载）
-ADD_SMARTDNS=true     # luci-app-smartdns
+ADD_SMARTDNS=false     # luci-app-smartdns
 
 ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
                         #   ├─ luci-app-natmode     NAT 类型三选一（网络 → NAT 类型）
