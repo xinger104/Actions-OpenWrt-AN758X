@@ -35,6 +35,11 @@ ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
                         #   ├─ luci-app-natmode     NAT 类型三选一（网络 → NAT 类型）
                         #   └─ luci-app-pon-status  PON 光模块卡片（概览页「系统」下一格）
 
+#-----新加部分-------
+ADD_KMODHELPER=true
+ADD_ADGUARDHOME=true
+ADD_OPENLIST=true
+
 clone() {  # clone <url> <dir> [branch]
   local url="$1" dir="$2" br="$3"
   [ -d "$dir" ] && { echo "已存在，跳过: $dir"; return 0; }
@@ -179,6 +184,21 @@ fi
 if [ "$ADD_SMARTDNS" = "true" ]; then
   clone https://github.com/pymumu/luci-app-smartdns "$PKG_DIR/luci-app-smartdns" master
   clone https://github.com/pymumu/smartdns "$PKG_DIR/smartdns" master
+fi
+
+# --------------------------------------
+# 个人新加app
+# --------------------------------------
+if [ "$ADD_KMODHELPER" = "true" ]; then
+  clone https://github.com/zhtut/luci-app-kmod-helper "$PKG_DIR/luci-app-kmod-helper" master
+fi
+
+if [ "$ADD_ADGUARDHOME" = "true" ]; then
+  clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-adguardhome "$PKG_DIR/luci-app-adguardhome" master
+fi
+
+if [ "$ADD_OPENLIST" = "true" ]; then
+  clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-openlist2 "$PKG_DIR/luci-app-openlist" master
 fi
 
 # ---------------------------------------------------------
