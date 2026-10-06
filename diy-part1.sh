@@ -25,7 +25,7 @@ ADD_AIROHA_NPU=true    # luci-app-airoha-npu：Airoha SoC 状态页（NPU/CPU/Fr
 
 ADD_PASSWALL=false     # luci-app-passwall（含依赖源）
 ADD_OPENCLASH=true    # luci-app-openclash ⚠ 依赖 Ruby/Rust，编译极慢
-ADD_MOSDNS=false       # luci-app-mosdns + v2ray-geodata
+ADD_MOSDNS=true       # luci-app-mosdns + v2ray-geodata
 ADD_LUCKY=true        # luci-app-lucky（DDNS + socat）
 ADD_TAILSCALE=true    # luci-app-tailscale
 ADD_OPENLIST=true     # luci-app-openlist2（alist/openlist 挂载）
@@ -38,7 +38,7 @@ ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
 #-----新加部分-------
 ADD_KMODHELPER=true
 ADD_ADGUARDHOME=true
-
+ADD_EASYIER=true
 
 clone() {  # clone <url> <dir> [branch]
   local url="$1" dir="$2" br="$3"
@@ -194,12 +194,16 @@ if [ "$ADD_KMODHELPER" = "true" ]; then
 fi
 
 if [ "$ADD_ADGUARDHOME" = "true" ]; then
-  echo "::warning::添加adguardhome"
   clone https://github.com/kenzok8/openwrt-packages "$PKG_DIR/OpenPackage" master
   mv "$PKG_DIR/OpenPackage/luci-app-adguardhome" "$PKG_DIR/luci-app-adguardhome" 2>/dev/null
   rm -rf "$PKG_DIR/OpenPackage"
 fi
-
+if [ "$ADD_EASYIER" = "true" ]; then
+  clone https://github.com/EasyTier/luci-app-easytier "$PKG_DIR/easytier" main
+  mv "$PKG_DIR/easytier/luci-app-easytier" "$PKG_DIR/luci-app-easytier" 2>/dev/null
+  mv "$PKG_DIR/easytier/easytier-noweb" "$PKG_DIR/easytier-noweb" 2>/dev/null
+  rm -rf "$PKG_DIR/easytier"
+fi
 # ---------------------------------------------------------
 # 校验：默认开启的两个插件必须拉到，否则 defconfig 会静默剔除，
 #       编出来的固件缺少状态页还不易察觉
