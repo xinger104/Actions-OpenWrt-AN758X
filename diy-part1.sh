@@ -38,7 +38,7 @@ ADD_LUCI_APP=true       # qwe3017/luci-app 仓库（monorepo）
 #-----新加部分-------
 ADD_KMODHELPER=true
 ADD_ADGUARDHOME=true
-ADD_OPENLIST=true
+
 
 clone() {  # clone <url> <dir> [branch]
   local url="$1" dir="$2" br="$3"
@@ -195,10 +195,6 @@ fi
 
 if [ "$ADD_ADGUARDHOME" = "true" ]; then
   clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-adguardhome "$PKG_DIR/luci-app-adguardhome" master
-fi
-
-if [ "$ADD_OPENLIST" = "true" ]; then
-  clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-openlist2 "$PKG_DIR/luci-app-openlist" master
 fi
 
 # ---------------------------------------------------------
