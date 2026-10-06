@@ -190,11 +190,14 @@ fi
 # 个人新加app
 # --------------------------------------
 if [ "$ADD_KMODHELPER" = "true" ]; then
-  clone https://github.com/zhtut/luci-app-kmod-helper "$PKG_DIR/luci-app-kmod-helper" master
+  clone https://github.com/zhtut/luci-app-kmod-helper "$PKG_DIR/luci-app-kmod-helper" main
 fi
 
 if [ "$ADD_ADGUARDHOME" = "true" ]; then
-  clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-adguardhome "$PKG_DIR/luci-app-adguardhome" master
+  echo "::warning::添加adguardhome"
+  clone https://github.com/kenzok8/openwrt-packages "$PKG_DIR/OpenPackage" master
+  mv "$PKG_DIR/OpenPackage/luci-app-adguardhome" "$PKG_DIR/luci-app-adguardhome" 2>/dev/null
+  rm -rf "$PKG_DIR/OpenPackage"
 fi
 
 # ---------------------------------------------------------
